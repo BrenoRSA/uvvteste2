@@ -29,7 +29,7 @@ CREATE TABLE "funcionario" (
   "cpf_supervisor" CHAR(11) ,
   "numero_departamento" INTEGER NOT NULL
 );
-COMMENT ON TABLE funcionario IS 'Tabela "funcionario" contém todas as informações dos funcionários, como o cpf, nome, data de nascimento, endereço, sexo, salário, cpf do supervisor que nesse caso também está na tabela funcionário, além do número do departamento em que ele trabalha.';
+COMMENT ON TABLE funcionario IS 'Tabela "funcionario" contém informações dos funcionários, cpf, nome, data de nascimento, endereço, sexo, salário, cpf do supervisor.';
 
 CREATE TABLE "departamento" (
   "numero_departamento" INTEGER PRIMARY KEY NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE "departamento" (
   "cpf_gerente" CHAR(11) NOT NULL,
   "data_inicio_gerente" DATE
 );
-COMMENT ON TABLE departamento IS 'Tabela "departamento" contém informações sobre o departamento, sendo elas o número e o nome dele, cpf do gerente, data que começou o gerente.';
+COMMENT ON TABLE departamento IS 'Tabela "departamento" contém informações do departamento, o número e o nome dele, cpf do gerente, data que começou o gerente.';
 
 CREATE TABLE "projeto" (
   "numero_projeto" INTEGER PRIMARY KEY NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE "projeto" (
   "local_projeto" VARCHAR(150),
   "numero_departamento" INTEGER NOT NULL
 );
-COMMENT ON TABLE projeto IS 'Tabela "projeto" nele tem as informações sobre os projetos desenvolvidos, como o número, nome, local do projeto, além do departamento responsável por ele.';
+COMMENT ON TABLE projeto IS 'Tabela "projeto" informações sobre os projetos desenvolvidos, número, nome, local do projeto, além do departamento.';
 COMMENT ON COLUMN projeto.nome_projeto IS 'Criação da UNIQUE KEY ou ALTERNATE KEY no atributo "nome_projeto".';
 
 CREATE TABLE "localizacoes_departamento" (
@@ -53,7 +53,7 @@ CREATE TABLE "localizacoes_departamento" (
   "local" VARCHAR(15) NOT NULL,
   PRIMARY KEY ("numero_departamento", "local")
 );
-COMMENT ON TABLE localizacoes_departamento IS 'Tabela "localizacoes_departamento" contém o número do departamento e o local.';
+COMMENT ON TABLE localizacoes_departamento IS 'Tabela "localizacoes_departamento" o número do departamento e o local.';
 
 CREATE TABLE "trabalha_em" (
   "cpf_funcionario" CHAR(11) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE "trabalha_em" (
   "horas" NUMERIC(3, 1) NOT NULL,
   PRIMARY KEY ("cpf_funcionario", "numero_projeto")
 );
-COMMENT ON TABLE trabalha_em IS 'Tabela "trabalha_em" é responsável por armazenar em que projeto cada funcionário trabalha, sendo os atributos o cpf do funcionário, o nome do projeto que ele trabalha e as horas.';
+COMMENT ON TABLE trabalha_em IS 'Tabela "trabalha_em" é responsável por armazenar em que projeto cada funcionário trabalha, referindo-se os atributos do cpf do funcionário, o nome do projeto que ele trabalha e as horas.';
 
 CREATE TABLE "dependente" (
   "cpf_funcionario" CHAR(11) NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE "dependente" (
   "parentesco" VARCHAR(15),
   PRIMARY KEY ("cpf_funcionario", "nome_dependente")
 );
-COMMENT ON TABLE dependente IS 'Tabela "dependente" mostra os dependentes associados a cada funcionário. Os atributos da tabela são cpf do funcionário, nome, sexo, data de nascimento e parentesco dos dependentes.';
+COMMENT ON TABLE dependente IS 'Tabela "dependente" mostra os dependentes associados a cada funcionário. Os atributos da tabela são nome, cpf funcionario, data de nascimento, sexo e parentesco dos dependentes.';
 
 INSERT INTO funcionario
 VALUES 
