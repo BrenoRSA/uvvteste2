@@ -11,7 +11,7 @@
  </source-databases>
  <target-database id="ppdb" dbcs-ref="DS0">
   <table id="TAB1" populated="true" UUID="9171e90b-0d7c-48a9-a293-71ec7af3eca2" name="funcionario" objectType="TABLE" physicalName="funcionario" >
-   <remarks>Tabela &apos;funcionario&apos; contém todas as informações dos funcionários, como o cpf, nome, data de nascimento, endereço, sexo, salário, cpf do supervisor que nesse caso também está na tabela funcionário, além do número do departamento em que ele trabalha.</remarks>
+   <remarks>Tabela &apos;funcionario&apos; informações dos funcionários, como o cpf, nome, data de nascimento, endereço, sexo, salário, cpf do supervisor que nesse caso também está na tabela funcionário, além do número do departamento em que ele trabalha.</remarks>
    <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
     <column id="COL2" populated="true" UUID="bd84563f-ea24-4fb2-a3a3-79eeb3d1fa42" autoIncrement="false" autoIncrementSequenceName="funcionario_cpf_seq" defaultValue="" name="cpf" nullable="0" physicalName="cpf" precision="11" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
      <remarks></remarks>
@@ -55,7 +55,7 @@
    </folder>
   </table>
   <table id="TAB14" populated="true" UUID="5242b278-9bcc-4bb9-bcf4-c52a246e4e0c" name="dependente" objectType="TABLE" physicalName="dependente" >
-   <remarks>Tabela &apos;dependente&apos; mostra os dependentes associados a cada funcionário. Os atributos da tabela são cpf do funcionário, nome, sexo, data de nascimento e parentesco dos dependentes.</remarks>
+   <remarks>Tabela &apos;dependente&apos; mostra os dependentes associados a cada funcionário. Os atributos da tabela são nome, cpf do funcionario, data de nascimento, sexo e parentesco dos dependentes.</remarks>
    <folder id="FOLTAB141" populated="true" name="Columns" physicalName="Columns" type="1">
     <column id="COL15" populated="true" UUID="ba88f72a-eaec-4ac9-b763-7ac59d08dbcc" autoIncrement="false" autoIncrementSequenceName="dependente_cpf_funcionario_seq" defaultValue="" name="cpf_funcionario" nullable="0" physicalName="cpf_funcionario" precision="11" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
      <remarks></remarks>
@@ -85,7 +85,7 @@
    </folder>
   </table>
   <table id="TAB23" populated="true" UUID="e03c12d0-d269-402d-8b48-6d9ea62954c1" name="trabalha_em" objectType="TABLE" physicalName="trabalha_em" >
-   <remarks>Tabela &apos;trabalha_em&apos; é responsável por armazenar em que projeto cada funcionário trabalha, sendo os atributos o cpf do funcionário, o nome do projeto que ele trabalha e as horas.</remarks>
+   <remarks>Tabela &apos;trabalha_em&apos; é responsável por armazenar em que projeto cada funcionário trabalha,referindo-se os atributos o cpf do funcionário, o nome do projeto que ele trabalha e as horas.</remarks>
    <folder id="FOLTAB231" populated="true" name="Columns" physicalName="Columns" type="1">
     <column id="COL24" populated="true" UUID="7dd03f1c-ec30-4cc7-8ed6-54459c1616fc" autoIncrement="false" autoIncrementSequenceName="trabalha_em_cpf_funcionario_seq" defaultValue="" name="cpf_funcionario" nullable="0" physicalName="cpf_funcionario" precision="11" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
      <remarks></remarks>
