@@ -29,7 +29,7 @@ CREATE TABLE "funcionario" (
   "cpf_supervisor" CHAR(11) ,
   "numero_departamento" INTEGER NOT NULL
 );
-COMMENT ON TABLE funcionario IS 'Tabela "funcionario" contém informações dos funcionários, cpf, nome, data de nascimento, endereço, sexo, salário, cpf do supervisor.';
+COMMENT ON TABLE funcionario IS 'Tabela "funcionario" informações dos funcionários, cpf, nome, data de nascimento, endereço, sexo, salário, cpf do supervisor.';
 
 CREATE TABLE "departamento" (
   "numero_departamento" INTEGER PRIMARY KEY NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE "departamento" (
   "cpf_gerente" CHAR(11) NOT NULL,
   "data_inicio_gerente" DATE
 );
-COMMENT ON TABLE departamento IS 'Tabela "departamento" contém informações do departamento, o número e o nome dele, cpf do gerente, data que começou o gerente.';
+COMMENT ON TABLE departamento IS 'Tabela "departamento" informações do departamento, o número e o nome dele, cpf do gerente, data que começou o gerente.';
 
 CREATE TABLE "projeto" (
   "numero_projeto" INTEGER PRIMARY KEY NOT NULL,
