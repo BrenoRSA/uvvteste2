@@ -5,6 +5,7 @@ CREATE TABLE cargos (
                 salario_maximo DECIMAL(8,2),
                 CONSTRAINT cargos_pk PRIMARY KEY (id_cargo)
 );
+
 COMMENT ON TABLE cargos IS 'salario minimo e maximo para cada cargo';
 
 
@@ -44,6 +45,7 @@ CREATE TABLE localizacoes (
                 id_pais CHAR(2) NOT NULL,
                 CONSTRAINT localizacoes_pk PRIMARY KEY (id_localizacao)
 );
+
 COMMENT ON TABLE localizacoes IS 'localizacoes da empresa';
 
 
@@ -54,6 +56,7 @@ CREATE TABLE departamentos (
                 id_gerente INTEGER,
                 CONSTRAINT departamentos_pk PRIMARY KEY (id_departamento)
 );
+
 COMMENT ON TABLE departamentos IS 'departamentos da empresa';
 
 
@@ -74,6 +77,7 @@ CREATE TABLE empregados (
                 id_supervisor INTEGER,
                 CONSTRAINT empregados_pk PRIMARY KEY (id_empregado)
 );
+
 COMMENT ON TABLE empregados IS 'dados dos empregados';
 
 
@@ -142,3 +146,4 @@ NOT DEFERRABLE;
 
 ALTER TABLE historico_cargos ADD CONSTRAINT empregados_historico_cargos_fk
 FOREIGN KEY (id_empregado)
+NOT DEFERRABLE;
