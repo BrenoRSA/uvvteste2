@@ -1,1 +1,144 @@
+CREATE TABLE cargos (
+                id_cargo VARCHAR(10) NOT NULL,
+                cargo VARCHAR(35) NOT NULL,
+                salario_minimo DECIMAL(8,2),
+                salario_maximo DECIMAL(8,2),
+                CONSTRAINT cargos_pk PRIMARY KEY (id_cargo)
+);
+COMMENT ON TABLE cargos IS 'salario minimo e maximo para cada cargo';
 
+
+CREATE UNIQUE INDEX cargos_idx
+ ON cargos
+ ( cargo );
+
+CREATE TABLE regioes (
+                id_regiao INTEGER NOT NULL,
+                nome VARCHAR(25) NOT NULL,
+                CONSTRAINT regioes_pk PRIMARY KEY (id_regiao)
+);
+
+
+CREATE UNIQUE INDEX regioes_idx
+ ON regioes
+ ( nome );
+
+CREATE TABLE paises (
+                id_pais CHAR(2) NOT NULL,
+                nome VARCHAR(50) NOT NULL,
+                id_regiao INTEGER NOT NULL,
+                CONSTRAINT paises_pk PRIMARY KEY (id_pais)
+);
+
+
+CREATE UNIQUE INDEX paises_idx
+ ON paises
+ ( nome );
+
+CREATE TABLE localizacoes (
+                id_localizacao INTEGER NOT NULL,
+                endereco VARCHAR(50),
+                cep VARCHAR(12),
+                cidade VARCHAR(50),
+                uf VARCHAR(25),
+                id_pais CHAR(2) NOT NULL,
+                CONSTRAINT localizacoes_pk PRIMARY KEY (id_localizacao)
+);
+COMMENT ON TABLE localizacoes IS 'localizacoes da empresa';
+
+
+CREATE TABLE departamentos (
+                id_departamento INTEGER NOT NULL,
+                nome VARCHAR(50),
+                id_localizacao INTEGER NOT NULL,
+                id_gerente INTEGER,
+                CONSTRAINT departamentos_pk PRIMARY KEY (id_departamento)
+);
+COMMENT ON TABLE departamentos IS 'departamentos da empresa';
+
+
+CREATE UNIQUE INDEX departamentos_idx
+ ON departamentos
+ ( nome );
+
+CREATE TABLE empregados (
+                id_empregado INTEGER NOT NULL,
+                nome VARCHAR(75) NOT NULL,
+                email VARCHAR(35) NOT NULL,
+                telefone VARCHAR(20),
+                data_contratacao DATE NOT NULL,
+                id_cargo VARCHAR(10) NOT NULL,
+                salario DECIMAL(8,2),
+                comissao DECIMAL(4,2),
+                id_departamento INTEGER NOT NULL,
+                id_supervisor INTEGER,
+                CONSTRAINT empregados_pk PRIMARY KEY (id_empregado)
+);
+COMMENT ON TABLE empregados IS 'dados dos empregados';
+
+
+CREATE UNIQUE INDEX empregados_idx
+ ON empregados
+ ( email );
+
+CREATE TABLE historico_cargos (
+                id_empregado INTEGER NOT NULL,
+                data_inicial DATE NOT NULL,
+                data_final DATE NOT NULL,
+                id_cargo VARCHAR(10) NOT NULL,
+                id_departamento INTEGER NOT NULL,
+                CONSTRAINT historico_cargos_pk PRIMARY KEY (id_empregado, data_inicial)
+);
+
+
+ALTER TABLE empregados ADD CONSTRAINT cargos_empregados_fk
+FOREIGN KEY (id_cargo)
+REFERENCES cargos (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE historico_cargos ADD CONSTRAINT cargos_historico_cargos_fk
+FOREIGN KEY (id_cargo)
+REFERENCES cargos (id_cargo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE paises ADD CONSTRAINT regioes_paises_fk
+FOREIGN KEY (id_regiao)
+REFERENCES regioes (id_regiao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE localizacoes ADD CONSTRAINT paises_localizacoes_fk
+FOREIGN KEY (id_pais)
+REFERENCES paises (id_pais)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE departamentos ADD CONSTRAINT localizacoes_departamentos_fk
+FOREIGN KEY (id_localizacao)
+REFERENCES localizacoes (id_localizacao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE historico_cargos ADD CONSTRAINT departamentos_historico_cargos_fk
+FOREIGN KEY (id_departamento)
+REFERENCES departamentos (id_departamento)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE empregados ADD CONSTRAINT departamentos_empregados_fk
+FOREIGN KEY (id_departamento)
+REFERENCES departamentos (id_departamento)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE historico_cargos ADD CONSTRAINT empregados_historico_cargos_fk
+FOREIGN KEY (id_empregado)
